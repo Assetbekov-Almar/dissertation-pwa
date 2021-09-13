@@ -66,7 +66,19 @@ function App() {
      * Installability requires a service worker with a fetch event handler, and
      * if the page isn't served over HTTPS, the service worker won't load.
      */
+    const handleInstallBtnClick = async () => {
+      window.deferredPrompt.prompt();
+      const { outcome } = await window.deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      window.deferredPrompt = null;
+    }
 
+  window.addEventListener('appinstalled', () => {
+    // Clear the deferredPrompt so it can be garbage collected
+    window.deferredPrompt = null;
+    // Optionally, send analytics event to indicate successful install
+    console.log('PWA was installed');
+  });
 
   return (
     <div className="App">
@@ -88,7 +100,7 @@ function App() {
           Please <a>reload this page via HTTPS</a>.
         </p>
         <div id="installContainer" className="hidden">
-          <button id="butInstall" type="button">
+          <button id="butInstall" type="button" onClick={() => handleInstallBtnClick}>
             Install
           </button>
         </div>
