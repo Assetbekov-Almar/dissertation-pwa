@@ -11,18 +11,25 @@ function App() {
     } else {
       const divInstall = document.getElementById('installContainer');
       const butInstall = document.getElementById('butInstall');
+      const installPromotion = document.querySelector('.install-promotion');
 
       /* Put code here */
       window.addEventListener('beforeinstallprompt', (event) => {
         console.log('👍', 'beforeinstallprompt', event);
         // Stash the event so it can be triggered later.
         window.deferredPrompt = event;
+
+        installPromotion.style.display = 'block';
+
         // Remove the 'hidden' class from the install button container
         divInstall.classList.toggle('hidden', false);
       });
 
       butInstall.addEventListener('click', async () => {
         console.log('👍', 'butInstall-clicked');
+
+        installPromotion.style.display = 'none';
+
         const promptEvent = window.deferredPrompt;
         if (!promptEvent) {
           // The deferred prompt isn't available.
@@ -40,6 +47,13 @@ function App() {
         divInstall.classList.toggle('hidden', true);
       });
 
+      window.addEventListener('appinstalled', (event) => {
+        console.log('👍', 'appinstalled', event);
+        installPromotion.style.display = 'none';
+        // Clear the deferredPrompt so it can be garbage collected
+        window.deferredPrompt = null;
+      });
+
       if (window.location.protocol === 'http:') {
         const requireHTTPS = document.getElementById('requireHTTPS');
         const link = requireHTTPS.querySelector('a');
@@ -49,11 +63,6 @@ function App() {
     }
   })
 
-    window.addEventListener('appinstalled', (event) => {
-      console.log('👍', 'appinstalled', event);
-      // Clear the deferredPrompt so it can be garbage collected
-      window.deferredPrompt = null;
-    });
 
 
     /* Only register a service worker if it's supported */
@@ -84,18 +93,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h2 className="install-promotion">You can install PWA now.</h2>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <p id="requireHTTPS" className="hidden">
           <b>STOP!</b> This page <b>must</b> be served over HTTPS.
           Please <a>reload this page via HTTPS</a>.
