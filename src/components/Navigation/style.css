@@ -1,0 +1,18 @@
+.navigation-wrapper {
+    width: 100%;
+}
+
+.navigation-wrapper .navigation {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navigation-wrapper .navigation li {
+    list-style: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.navigation-wrapper .navigation li:hover {
+    color: #61dafb;
+}

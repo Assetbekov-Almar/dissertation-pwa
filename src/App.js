@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import React from 'react';
 import './App.css';
+import Navigation from "./components/Navigation";
+import PageInfo from "./components/PageInfo";
 
 function App() {
   const [isInitialMount, setIsInitialMount] = React.useState(true);
@@ -16,6 +17,8 @@ function App() {
       /* Put code here */
       window.addEventListener('beforeinstallprompt', (event) => {
         console.log('👍', 'beforeinstallprompt', event);
+
+        event.preventDefault();
         // Stash the event so it can be triggered later.
         window.deferredPrompt = event;
 
@@ -93,8 +96,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Navigation />
         <h2 className="install-promotion">You can install PWA now.</h2>
-        <img src={logo} className="App-logo" alt="logo" />
         <p id="requireHTTPS" className="hidden">
           <b>STOP!</b> This page <b>must</b> be served over HTTPS.
           Please <a>reload this page via HTTPS</a>.
@@ -105,6 +108,7 @@ function App() {
           </button>
         </div>
       </header>
+      <PageInfo />
     </div>
   );
 }
