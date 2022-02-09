@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dissertation-pwa/static/css/main.e229c8f1.chunk.css",
-    "main.js": "/dissertation-pwa/static/js/main.783e1480.chunk.js",
-    "main.js.map": "/dissertation-pwa/static/js/main.783e1480.chunk.js.map",
+    "main.js": "/dissertation-pwa/static/js/main.d093d295.chunk.js",
+    "main.js.map": "/dissertation-pwa/static/js/main.d093d295.chunk.js.map",
     "runtime-main.js": "/dissertation-pwa/static/js/runtime-main.8654fd1c.js",
     "runtime-main.js.map": "/dissertation-pwa/static/js/runtime-main.8654fd1c.js.map",
     "static/js/2.5984a736.chunk.js": "/dissertation-pwa/static/js/2.5984a736.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8654fd1c.js",
     "static/js/2.5984a736.chunk.js",
     "static/css/main.e229c8f1.chunk.css",
-    "static/js/main.783e1480.chunk.js"
+    "static/js/main.d093d295.chunk.js"
   ]
 }
